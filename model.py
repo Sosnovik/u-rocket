@@ -1,7 +1,6 @@
 from keras.models import Model
 from keras.layers import *
-from keras import backend as K
-from keras.optimizers import Adam
+
 
 def double_conv_layer(x, size, dropout, batch_norm):
     axis = 3
