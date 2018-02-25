@@ -1,6 +1,32 @@
 import numpy as np
 import pandas as pd
 
+from keras.preprocessing import image as k_image
+import glob
+from PIL import Image
+
+image_size = (512, 512)
+INTERPOINT_D = 0.1
+N_IMAGES = 3
+
+files = glob.glob('photo/*.bmp')
+image_size = (512, 512)
+
+def get_array(file):
+    image = Image.open(file).convert('L')
+    image = image.resize(image_size)
+    image = np.array(image).astype('float32')
+    image = image / 255.0
+    return image 
+
+def get_random_background():
+    random_path = np.random.choice(files, 1)
+    array = get_array(random_path[0])
+    array = array.reshape(image_size + (1,)) # add extra dim
+    array = k_image.random_rotation(array, 90.0, row_axis=0, col_axis=1, channel_axis=2, fill_mode='reflect')
+    array = k_image.random_shift(array, 0.1, 0.1, row_axis=0, col_axis=1, channel_axis=2, fill_mode='reflect')
+    return array[:, :, 0] # remove extra dim
+
 def gaussian2D(shape, mean, cov):
     '''
     add gaussian to source image
