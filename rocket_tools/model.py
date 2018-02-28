@@ -16,10 +16,8 @@ def double_conv_layer(x, size, dropout, batch_norm):
         conv = Dropout(dropout)(conv)
     return conv
 
-def ZF_UNET_224(dropout_val=0.0, batch_norm=True):
-    inputs = Input((512, 512, 3))
-    axis = 3
-    filters = 16
+def ZF_UNET_224(dropout_val=0.0, filters = 16, axis = 3, input_ = (512,512,3), batch_norm=True):
+    inputs = Input((input_))
 
     conv_224 = double_conv_layer(inputs, filters, dropout_val, batch_norm)
     pool_112 = MaxPooling2D(pool_size=(2, 2))(conv_224)
