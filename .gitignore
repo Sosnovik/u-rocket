@@ -105,4 +105,4 @@ ENV/
 .mypy_cache/
 
 # tensor board
-tensor board/*
+tensorboard/UNet/snr=10.0/*
