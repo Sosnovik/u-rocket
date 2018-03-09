@@ -105,4 +105,4 @@ ENV/
 .mypy_cache/
 
 # tensor board
-.tensorboard/
+tensorboard
