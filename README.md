@@ -5,3 +5,6 @@ This research is dedicated to the application of neural network for the detectio
 ![u-net architecture](http://robocraft.ru/files/neuronet/u-net/u-net-architecture.png)
 
 
+In order to download the required resources just run `bash load.sh`
+
+
