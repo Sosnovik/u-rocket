@@ -106,3 +106,6 @@ ENV/
 
 # tensor board
 tensorboard
+saved_models
+photo
+
