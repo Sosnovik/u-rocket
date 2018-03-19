@@ -1,13 +1,18 @@
 import numpy as np
 
-def batch_generator(batch_size, snr=10.0, th_max=0.5):
+def preprocess_batch(batch):
+    batch /= 255
+    batch -= 0.5
+    return batch
+
+def BatchGenerator(image_generator, batch_size, snr=10.0, th_max=0.5, n_images = 3):
     
     while True:
         image_list = []
         mask_list = []
         
         for i in range(batch_size):
-            images, masks = image_generator.get_images()
+            images, masks = image_generator.get_images(n_images=n_images)
             noise_max = np.max(images) / snr
             noise = np.random.randint(0, noise_max, size=images.shape) 
             p_noise = np.random.random(size=images.shape)
