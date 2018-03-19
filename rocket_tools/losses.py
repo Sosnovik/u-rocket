@@ -1,17 +1,15 @@
 import tensorflow as tf
 import numpy as np
 from keras import backend as K
+from .utils import flatten
 
-
-def _flatten(x):
-    return tf.reshape(x, [-1])
 
 def dice_coef(y_true, y_pred):
     # y_true_f = K.flatten(y_true)
-    y_true_f = _flatten(y_true)
+    y_true_f = flatten(y_true)
     
     # y_pred_f = K.flatten(y_pred)
-    y_pred_f = _flatten(y_pred)
+    y_pred_f = flatten(y_pred)
     
     # intersection = K.sum(y_true_f * y_pred_f)
     intersection = tf.reduce_sum(y_true_f * y_pred_f)
@@ -23,8 +21,8 @@ def dice_coef(y_true, y_pred):
 
 def jacard_coef(y_true, y_pred):
 
-    y_true_f = _flatten(y_true)
-    y_pred_f = _flatten(y_pred)
+    y_true_f = flatten(y_true)
+    y_pred_f = flatten(y_pred)
     
     intersection = tf.reduce_sum(y_true_f * y_pred_f)
     
@@ -34,8 +32,12 @@ def jacard_coef(y_true, y_pred):
 
 def binary_crossentropy(y_true, y_pred, eps=1e-9):
     # -[true * log(pred) + (1-true) * log(1-pred)]
+    y_true = flatten(y_true)
+    y_pred = flatten(y_pred)
     y_pred = tf.clip_by_value(y_pred, eps, 1-eps) # save log
     
-    loss = y_true * tf.log(y_pred) + (1 - y_true) * tf.log(1 - y_pred)
-    loss = -tf.reduce_mean(loss)
+    loss = -(y_true * tf.log(y_pred) + (1 - y_true) * tf.log(1 - y_pred))
+    loss = tf.reduce_sum(loss, -1)
+    loss = tf.reduce_mean(loss)
     return loss
+

@@ -1,5 +1,6 @@
 from PIL import Image
 import numpy as np
+import tensorflow as tf
 
 
 def read_image_from_file(file, image_size=(512, 512)):
@@ -17,6 +18,12 @@ def random_small_rotation(scale = 0.1):
         [-1.0 * np.sin(angle), np.cos(angle)]
     ])
     return matrix
+
+def flatten(x):
+    shape = x.get_shape().as_list()
+    new_shape = [-1, np.prod(shape[1:])]
+    return tf.reshape(x, new_shape)
+
 
 
 

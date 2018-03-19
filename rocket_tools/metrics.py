@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-def _accuracy(y_true, y_pred):
+def accuracy(y_true, y_pred):
     
     positive_pred = tf.equal(1.0, tf.round(y_pred))
     negative_pred = tf.equal(0.0, tf.round(y_pred))
@@ -13,7 +13,7 @@ def _accuracy(y_true, y_pred):
     
     return acc
 
-def _IoU(y_true, y_pred):
+def IoU(y_true, y_pred):
     
     positive_pred = tf.equal(1.0, tf.round(y_pred))
     negative_pred = tf.equal(0.0, tf.round(y_pred))
