@@ -28,7 +28,7 @@ class ImageGenerator(object):
               
     def __get_random_background(self):
         random_path = np.random.choice(self.files, 1)
-        array = read_image_from_file(random_path[0])
+        array = read_image_from_file(random_path[0], self.image_size)
         array = array.reshape(self.image_size + (1,)) # add extra dim
         array = k_image.random_rotation(array, 90.0, row_axis=0, 
                                         col_axis=1, channel_axis=2, fill_mode='reflect')

@@ -5,7 +5,7 @@ import rocket_tools as rt
 import os
 
 
-def train_model(model, snr, writer_path, steps=5000, batch_size=64, image_size=128, n_images=3):    
+def train_model(model, snr, writer_path, sess, steps=10000, batch_size=64, image_size=128, n_images=3):    
     x_input = tf.placeholder(tf.float32, 
                              [None, image_size, image_size, n_images], 
                              name='input')
@@ -36,8 +36,7 @@ def train_model(model, snr, writer_path, steps=5000, batch_size=64, image_size=1
     batch_generator = rt.batch_generator.BatchGenerator(image_generator, batch_size, 
                                                         snr=snr, n_images=n_images)
     
-    # initialize training session
-    sess = tf.InteractiveSession()
+    # initialize 
     sess.run(tf.global_variables_initializer())
    
     print('started training')
@@ -73,8 +72,9 @@ if __name__ == "__main__":
     os.system('rm -rf {}'.format(TB_PATH))
     
     model = rt.model.U_NET(input_=(image_size, image_size, n_images))
+    sess = tf.InteractiveSession()
 
-    train_model(model, writer_path=TB_PATH, snr=snr)
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
 
     saver = tf.train.Saver()
     saver.save(sess, MODEL_PATH)
