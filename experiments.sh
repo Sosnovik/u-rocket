@@ -1,7 +1,7 @@
 #!bin/bash
 
 export TF_CPP_MIN_LOG_LEVEL=3
-GPU=2
+GPU=1
 
 CUDA_VISIBLE_DEVICES=$GPU python train.py --snr=10.0
 CUDA_VISIBLE_DEVICES=$GPU python train.py --snr=7.0

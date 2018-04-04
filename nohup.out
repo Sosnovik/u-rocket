@@ -757,3 +757,610 @@ Using TensorFlow backend.
 started training
 finished training
 Using TensorFlow backend.
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Caused by op u'U_NET/conv2d_23/convolution', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/convolutional.py", line 164, in call
+    dilation_rate=self.dilation_rate)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 3161, in conv2d
+    data_format='NHWC')
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 672, in convolution
+    op=op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 338, in with_space_to_batch
+    return op(input, num_spatial_dims, padding)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 664, in op
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 131, in _non_atrous_convolution
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_nn_ops.py", line 397, in conv2d
+    data_format=data_format, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Caused by op u'U_NET/conv2d_23/convolution', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/convolutional.py", line 164, in call
+    dilation_rate=self.dilation_rate)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 3161, in conv2d
+    data_format='NHWC')
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 672, in convolution
+    op=op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 338, in with_space_to_batch
+    return op(input, num_spatial_dims, padding)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 664, in op
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 131, in _non_atrous_convolution
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_nn_ops.py", line 397, in conv2d
+    data_format=data_format, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,16,128,128]
+	 [[Node: U_NET/conv2d_22/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="SAME", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_21/Relu, conv2d_22/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Caused by op u'U_NET/conv2d_22/convolution', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/convolutional.py", line 164, in call
+    dilation_rate=self.dilation_rate)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 3161, in conv2d
+    data_format='NHWC')
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 672, in convolution
+    op=op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 338, in with_space_to_batch
+    return op(input, num_spatial_dims, padding)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 664, in op
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 131, in _non_atrous_convolution
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_nn_ops.py", line 397, in conv2d
+    data_format=data_format, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,16,128,128]
+	 [[Node: U_NET/conv2d_22/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="SAME", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_21/Relu, conv2d_22/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Caused by op u'U_NET/conv2d_23/convolution', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/convolutional.py", line 164, in call
+    dilation_rate=self.dilation_rate)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 3161, in conv2d
+    data_format='NHWC')
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 672, in convolution
+    op=op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 338, in with_space_to_batch
+    return op(input, num_spatial_dims, padding)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 664, in op
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 131, in _non_atrous_convolution
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_nn_ops.py", line 397, in conv2d
+    data_format=data_format, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,128,128,16]
+	 [[Node: gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile = Tile[T=DT_FLOAT, Tmultiples=DT_INT32, _device="/job:localhost/replica:0/task:0/gpu:0"](gradients/U_NET/batch_normalization_22/moments/variance_grad/Reshape, gradients/U_NET/batch_normalization_22/moments/variance_grad/floordiv)]]
+
+Caused by op u'gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 19, in train_model
+    train_op = adam.minimize(loss_op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/training/optimizer.py", line 315, in minimize
+    grad_loss=grad_loss)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/training/optimizer.py", line 386, in compute_gradients
+    colocate_gradients_with_ops=colocate_gradients_with_ops)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 542, in gradients
+    grad_scope, op, func_call, lambda: grad_fn(op, *out_grads))
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 348, in _MaybeCompile
+    return grad_fn()  # Exit early
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 542, in <lambda>
+    grad_scope, op, func_call, lambda: grad_fn(op, *out_grads))
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_grad.py", line 94, in _MeanGrad
+    sum_grad = _SumGrad(op, grad)[0]
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_grad.py", line 59, in _SumGrad
+    return [array_ops.tile(grad, tile_scaling), None]
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_array_ops.py", line 3847, in tile
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+...which was originally created as op u'U_NET/batch_normalization_22/moments/variance', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/normalization.py", line 177, in call
+    epsilon=self.epsilon)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 1633, in normalize_batch_in_training
+    shift=None, name=None, keep_dims=False)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_impl.py", line 624, in moments
+    name="variance")
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_ops.py", line 1382, in reduce_mean
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_math_ops.py", line 1362, in _mean
+    keep_dims=keep_dims, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,128,128,16]
+	 [[Node: gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile = Tile[T=DT_FLOAT, Tmultiples=DT_INT32, _device="/job:localhost/replica:0/task:0/gpu:0"](gradients/U_NET/batch_normalization_22/moments/variance_grad/Reshape, gradients/U_NET/batch_normalization_22/moments/variance_grad/floordiv)]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,128,128,16]
+	 [[Node: gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile = Tile[T=DT_FLOAT, Tmultiples=DT_INT32, _device="/job:localhost/replica:0/task:0/gpu:0"](gradients/U_NET/batch_normalization_22/moments/variance_grad/Reshape, gradients/U_NET/batch_normalization_22/moments/variance_grad/floordiv)]]
+
+Caused by op u'gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 19, in train_model
+    train_op = adam.minimize(loss_op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/training/optimizer.py", line 315, in minimize
+    grad_loss=grad_loss)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/training/optimizer.py", line 386, in compute_gradients
+    colocate_gradients_with_ops=colocate_gradients_with_ops)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 542, in gradients
+    grad_scope, op, func_call, lambda: grad_fn(op, *out_grads))
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 348, in _MaybeCompile
+    return grad_fn()  # Exit early
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 542, in <lambda>
+    grad_scope, op, func_call, lambda: grad_fn(op, *out_grads))
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_grad.py", line 94, in _MeanGrad
+    sum_grad = _SumGrad(op, grad)[0]
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_grad.py", line 59, in _SumGrad
+    return [array_ops.tile(grad, tile_scaling), None]
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_array_ops.py", line 3847, in tile
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+...which was originally created as op u'U_NET/batch_normalization_22/moments/variance', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/normalization.py", line 177, in call
+    epsilon=self.epsilon)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 1633, in normalize_batch_in_training
+    shift=None, name=None, keep_dims=False)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_impl.py", line 624, in moments
+    name="variance")
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_ops.py", line 1382, in reduce_mean
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_math_ops.py", line 1362, in _mean
+    keep_dims=keep_dims, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,128,128,16]
+	 [[Node: gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile = Tile[T=DT_FLOAT, Tmultiples=DT_INT32, _device="/job:localhost/replica:0/task:0/gpu:0"](gradients/U_NET/batch_normalization_22/moments/variance_grad/Reshape, gradients/U_NET/batch_normalization_22/moments/variance_grad/floordiv)]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Caused by op u'U_NET/conv2d_23/convolution', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/convolutional.py", line 164, in call
+    dilation_rate=self.dilation_rate)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 3161, in conv2d
+    data_format='NHWC')
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 672, in convolution
+    op=op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 338, in with_space_to_batch
+    return op(input, num_spatial_dims, padding)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 664, in op
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 131, in _non_atrous_convolution
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_nn_ops.py", line 397, in conv2d
+    data_format=data_format, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,128,128,3]
+	 [[Node: U_NET/conv2d_23/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="VALID", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_22/Relu, conv2d_23/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,16,128,128]
+	 [[Node: U_NET/conv2d_22/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="SAME", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_21/Relu, conv2d_22/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Caused by op u'U_NET/conv2d_22/convolution', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/convolutional.py", line 164, in call
+    dilation_rate=self.dilation_rate)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 3161, in conv2d
+    data_format='NHWC')
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 672, in convolution
+    op=op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 338, in with_space_to_batch
+    return op(input, num_spatial_dims, padding)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 664, in op
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_ops.py", line 131, in _non_atrous_convolution
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_nn_ops.py", line 397, in conv2d
+    data_format=data_format, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,16,128,128]
+	 [[Node: U_NET/conv2d_22/convolution = Conv2D[T=DT_FLOAT, data_format="NHWC", padding="SAME", strides=[1, 1, 1, 1], use_cudnn_on_gpu=true, _device="/job:localhost/replica:0/task:0/gpu:0"](U_NET/activation_21/Relu, conv2d_22/kernel/read)]]
+	 [[Node: metrics/strided_slice_1/_517 = _Recv[client_terminated=false, recv_device="/job:localhost/replica:0/task:0/cpu:0", send_device="/job:localhost/replica:0/task:0/gpu:0", send_device_incarnation=1, tensor_name="edge_4285_metrics/strided_slice_1", tensor_type=DT_FLOAT, _device="/job:localhost/replica:0/task:0/cpu:0"]()]]
+
+Using TensorFlow backend.
+started training
+Traceback (most recent call last):
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 49, in train_model
+    learning_phase(): 1
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 895, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1124, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1321, in _do_run
+    options, run_metadata)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/client/session.py", line 1340, in _do_call
+    raise type(e)(node_def, op, message)
+tensorflow.python.framework.errors_impl.ResourceExhaustedError: OOM when allocating tensor with shape[64,128,128,16]
+	 [[Node: gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile = Tile[T=DT_FLOAT, Tmultiples=DT_INT32, _device="/job:localhost/replica:0/task:0/gpu:0"](gradients/U_NET/batch_normalization_22/moments/variance_grad/Reshape, gradients/U_NET/batch_normalization_22/moments/variance_grad/floordiv)]]
+
+Caused by op u'gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 19, in train_model
+    train_op = adam.minimize(loss_op)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/training/optimizer.py", line 315, in minimize
+    grad_loss=grad_loss)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/training/optimizer.py", line 386, in compute_gradients
+    colocate_gradients_with_ops=colocate_gradients_with_ops)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 542, in gradients
+    grad_scope, op, func_call, lambda: grad_fn(op, *out_grads))
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 348, in _MaybeCompile
+    return grad_fn()  # Exit early
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gradients_impl.py", line 542, in <lambda>
+    grad_scope, op, func_call, lambda: grad_fn(op, *out_grads))
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_grad.py", line 94, in _MeanGrad
+    sum_grad = _SumGrad(op, grad)[0]
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_grad.py", line 59, in _SumGrad
+    return [array_ops.tile(grad, tile_scaling), None]
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_array_ops.py", line 3847, in tile
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 2630, in create_op
+    original_op=self._default_original_op, op_def=op_def)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/ops.py", line 1204, in __init__
+    self._traceback = self._graph._extract_stack()  # pylint: disable=protected-access
+
+...which was originally created as op u'U_NET/batch_normalization_22/moments/variance', defined at:
+  File "train.py", line 77, in <module>
+    train_model(model, snr=snr, writer_path=TB_PATH, sess=sess)
+  File "train.py", line 15, in train_model
+    y_pred = model(x_input)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 602, in __call__
+    output = self.call(inputs, **kwargs)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2058, in call
+    output_tensors, _, _ = self.run_internal_graph(inputs, masks)
+  File "/usr/local/lib/python2.7/dist-packages/keras/engine/topology.py", line 2209, in run_internal_graph
+    output_tensors = _to_list(layer.call(computed_tensor, **kwargs))
+  File "/usr/local/lib/python2.7/dist-packages/keras/layers/normalization.py", line 177, in call
+    epsilon=self.epsilon)
+  File "/usr/local/lib/python2.7/dist-packages/keras/backend/tensorflow_backend.py", line 1633, in normalize_batch_in_training
+    shift=None, name=None, keep_dims=False)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/nn_impl.py", line 624, in moments
+    name="variance")
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/math_ops.py", line 1382, in reduce_mean
+    name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/ops/gen_math_ops.py", line 1362, in _mean
+    keep_dims=keep_dims, name=name)
+  File "/usr/local/lib/python2.7/dist-packages/tensorflow/python/framework/op_def_library.py", line 767, in apply_op
+    op_def=op_def)
+
+ResourceExhaustedError (see above for traceback): OOM when allocating tensor with shape[64,128,128,16]
+	 [[Node: gradients/U_NET/batch_normalization_22/moments/variance_grad/Tile = Tile[T=DT_FLOAT, Tmultiples=DT_INT32, _device="/job:localhost/replica:0/task:0/gpu:0"](gradients/U_NET/batch_normalization_22/moments/variance_grad/Reshape, gradients/U_NET/batch_normalization_22/moments/variance_grad/floordiv)]]
+
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
+Using TensorFlow backend.
+started training
+finished training
