@@ -49,7 +49,8 @@ class ImageGenerator(object):
         images = []
         masks = []
 
-        point = np.random.random(size=2)
+        point = np.random.uniform(-0.04, 1.04, 2)
+        
         radius = np.random.uniform(self.rad_min, self.rad_max)
         cov = np.eye(2) #+ 0.5 * np.random.uniform(-1, 1, size=(2, 2))
 
