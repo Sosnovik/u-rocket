@@ -26,14 +26,13 @@ class ImageGenerator(object):
         self.interpoint_dist_mean = interpoint_dist_mean
         self.interpoint_dist_std = interpoint_dist_std
               
-    def __get_random_background(self):
-        random_path = np.random.choice(self.files, 1)
-        array = read_image_from_file(random_path[0], self.image_size)
+    def __random_transformation(self, array, rotation=90.0, shift=0.1):
+#         array = read_image_from_file(path, self.image_size)
         array = array.reshape(self.image_size + (1,)) # add extra dim
-        array = k_image.random_rotation(array, 90.0, row_axis=0, 
+        array = k_image.random_rotation(array, rotation, row_axis=0, 
                                         col_axis=1, channel_axis=2, fill_mode='reflect')
         
-        array = k_image.random_shift(array, 0.1, 0.1, row_axis=0, 
+        array = k_image.random_shift(array, shift, shift, row_axis=0, 
                                      col_axis=1, channel_axis=2, fill_mode='reflect')
         return array[:, :, 0]
     
@@ -41,20 +40,22 @@ class ImageGenerator(object):
         # Background
         dark_color = np.random.randint(self.dark_min, self.dark_max)
         light_color = np.random.randint(1, 255 - dark_color)
-
-        img = self.__get_random_background() * dark_color
+        background_path = np.random.choice(self.files, 1)[0]
+        background = read_image_from_file(background_path, self.image_size) * dark_color
+        background = self.__random_transformation(background) 
         t_vec = np.random.random(size=2)
         t_vec = t_vec / np.linalg.norm(t_vec)
 
         images = []
         masks = []
 
-        point = np.random.uniform(-0.04, 1.04, 2)
+        point = np.random.uniform(-0.1, 1.1, 2)
         
         radius = np.random.uniform(self.rad_min, self.rad_max)
         cov = np.eye(2) #+ 0.5 * np.random.uniform(-1, 1, size=(2, 2))
 
         for _ in range(n_images):
+            img = self.__random_transformation(background, rotation=10) 
             generated_img = add_gaussian_on_image(img, light_color, point, radius, cov)
             images.append(generated_img)
 
