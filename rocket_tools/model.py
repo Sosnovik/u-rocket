@@ -52,7 +52,7 @@ def U_NET(dropout_val=0.0, filters = 16, axis = 3, input_ = (128,128,3)):
     up_conv_224 = double_conv_layer(up_224, filters, 0)
 
     conv_final = Conv2D(3, (1, 1))(up_conv_224)
-    conv_final = BatchNormalization(axis=axis)(conv_final)
+    #conv_final = BatchNormalization(axis=axis)(conv_final)
     conv_final = Activation('sigmoid')(conv_final)
 
     model = Model(inputs, conv_final, name="U_NET")
