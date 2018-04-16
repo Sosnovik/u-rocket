@@ -12,7 +12,7 @@ class ImageGenerator(object):
     
     _PATH  = './photo'
     
-    def __init__(self, path=_PATH, image_size=(512, 512), 
+    def __init__(self, path=_PATH, image_size=(128, 128), 
                  dark_min=50, dark_max=150, 
                  rad_min=0.0001, rad_max=0.0005, 
                  interpoint_dist_mean=0.1, interpoint_dist_std=0.01):
@@ -26,7 +26,7 @@ class ImageGenerator(object):
         self.interpoint_dist_mean = interpoint_dist_mean
         self.interpoint_dist_std = interpoint_dist_std
               
-    def __random_transformation(self, array, rotation=90.0, shift=0.1):
+    def __random_transformation(self, array, rotation=10, shift=0.1):
 #         array = read_image_from_file(path, self.image_size)
         array = array.reshape(self.image_size + (1,)) # add extra dim
         array = k_image.random_rotation(array, rotation, row_axis=0, 
@@ -49,13 +49,13 @@ class ImageGenerator(object):
         images = []
         masks = []
 
-        point = np.random.uniform(-0.1, 1.1, 2)
+        point = np.random.uniform(0, 1, 2)
         
         radius = np.random.uniform(self.rad_min, self.rad_max)
         cov = np.eye(2) #+ 0.5 * np.random.uniform(-1, 1, size=(2, 2))
 
         for _ in range(n_images):
-            img = self.__random_transformation(background, rotation=10) 
+            img = self.__random_transformation(background, rotation=0, shift=0) 
             generated_img = add_gaussian_on_image(img, light_color, point, radius, cov)
             images.append(generated_img)
 
