@@ -13,14 +13,14 @@ def BatchGenerator(image_generator, batch_size, snr_mean = 5, snr_std = 2, th_ma
         
         for i in range(batch_size):
             images, masks = image_generator.get_images(n_images=n_images)
-            noise_max = 200
-            noise = np.random.randint(0, noise_max, size=images.shape) 
-            p_noise = np.random.random(size=images.shape)
-            snr = np.random.normal(snr_mean, snr_std)
-            snr = np.clip(snr, 0.1, None)
+            #noise_max = 200
+            #noise = np.random.randint(0, noise_max, size=images.shape) 
+            #p_noise = np.random.random(size=images.shape)
+            #snr = np.random.normal(snr_mean, snr_std)
+            #snr = np.clip(snr, 0.1, None)
             
-            th_noise = 1.0 / (snr + 1.0)
-            images[p_noise < th_noise] = noise[p_noise < th_noise]
+            #th_noise = 1.0 / (snr + 1.0)
+            #images[p_noise < th_noise] = noise[p_noise < th_noise]
             
             image_list.append(images)
             mask_list.append(masks)
