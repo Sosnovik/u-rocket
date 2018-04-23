@@ -36,7 +36,7 @@ class ImageGenerator(object):
                                      col_axis=1, channel_axis=2, fill_mode='reflect')
         return array[:, :, 0]
     
-    def get_images(self, n_images=3, sigma_n=7, mu_n=2, sigma_snr=5, mu_snr=2): 
+    def get_images(self, image_size=(128,128), n_images=3, sigma_n=7, mu_n=2, sigma_snr=5, mu_snr=2): 
         # Background
         dark_color = np.random.randint(self.dark_min, self.dark_max)
         #light_color = np.random.randint(1, 255 - dark_color)
@@ -61,7 +61,7 @@ class ImageGenerator(object):
         th_noise = 7
         light_color = np.max(noise)*snr
         
-        b = np.random.randit(1,11)
+        b = np.random.randint(1,11)
         
         if b < 9:
             for _ in range(n_images):
