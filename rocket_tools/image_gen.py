@@ -56,9 +56,9 @@ class ImageGenerator(object):
         cov = np.eye(2) #+ 0.5 * np.random.uniform(-1, 1, size=(2, 2))
         
         noise = np.random.normal(sigma_n, sigma_n, size=image_size) 
-        p_noise = np.random.random(size=image_size)
+        #p_noise = np.random.random(size=image_size)
         snr = np.random.normal(sigma_snr, mu_snr)
-        th_noise = 7
+        #th_noise = 7
         light_color = np.max(noise)*snr
         
         b = np.random.randit(1,11)
@@ -66,7 +66,7 @@ class ImageGenerator(object):
         if b < 9:
             for _ in range(n_images):
                 img = self.__random_transformation(background, rotation=10, shift=0.1) 
-                img[p_noise < th_noise] = noise[p_noise < th_noise]
+                img = img + noise
                 generated_img = add_gaussian_on_image(img, light_color, point, radius, cov)
                 images.append(generated_img)
 
