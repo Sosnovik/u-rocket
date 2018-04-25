@@ -81,6 +81,7 @@ class ImageGenerator(object):
         else:
             for _ in range(n_images):
                 img = self.__random_transformation(background, rotation=10, shift=0.1)
+                img = img+noise
                 images.append(img)
                 
                 mask = np.zeros_like(img)
