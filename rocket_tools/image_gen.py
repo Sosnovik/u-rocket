@@ -36,7 +36,7 @@ class ImageGenerator(object):
                                      col_axis=1, channel_axis=2, fill_mode='reflect')
         return array[:, :, 0]
     
-    def get_images(self, image_size=(128,128), n_images=3, sigma_n=7, mu_n=2, sigma_snr=5, mu_snr=2): 
+    def get_images(self, image_size=(128,128), n_images=3, sigma_n=7, mu_n=3, sigma_snr=6, mu_snr=3): 
         # Background
         dark_color = np.random.randint(self.dark_min, self.dark_max)
         #light_color = np.random.randint(1, 255 - dark_color)
@@ -50,16 +50,17 @@ class ImageGenerator(object):
         images = []
         masks = []
 
-        point = np.random.uniform(-0.03, 1.03, 2)
+        point = np.random.uniform(-0.01, 1.01, 2)
         
         radius = np.random.uniform(self.rad_min, self.rad_max)
         cov = np.eye(2) #+ 0.5 * np.random.uniform(-1, 1, size=(2, 2))
         
-        noise = np.random.normal(sigma_n, sigma_n, size=image_size) 
+        noise = np.random.normal(sigma_n, mu_n, size=image_size) 
         #p_noise = np.random.random(size=image_size)
-        snr = np.random.normal(sigma_snr, mu_snr)
+        #snr = np.random.normal(sigma_snr, mu_snr)
         #th_noise = 7
-        light_color = np.max(noise)*snr
+        snr = 4
+        light_color = sigma_n*snr
         
         b = np.random.randint(1,11)
         
@@ -81,6 +82,7 @@ class ImageGenerator(object):
         else:
             for _ in range(n_images):
                 img = self.__random_transformation(background, rotation=10, shift=0.1)
+                img = img+noise
                 images.append(img)
                 
                 mask = np.zeros_like(img)
