@@ -12,13 +12,15 @@ class ImageGenerator(object):
     
     _PATH  = './photo'
     
-    def __init__(self, path=_PATH, image_size=(128, 128), 
+    def __init__(self, path=_PATH, image_size=(128, 128), snr_mean=1, snr_std=0,
                  dark_min=50, dark_max=150, 
                  rad_min=0.0001, rad_max=0.0005, 
                  interpoint_dist_mean=0.1, interpoint_dist_std=0.01):
         
         self.files = sorted(glob.glob(os.path.join(path, '*.bmp')))
         self.image_size = image_size
+        self.snr_mean = snr_mean
+        self.snr_std = snr_std
         self.dark_min = dark_min
         self.dark_max = dark_max
         self.rad_min = rad_min
@@ -36,7 +38,7 @@ class ImageGenerator(object):
                                      col_axis=1, channel_axis=2, fill_mode='reflect')
         return array[:, :, 0]
     
-    def get_images(self, image_size=(128,128), n_images=3, sigma_n=7, mu_n=3, sigma_snr=6, mu_snr=3): 
+    def get_images(self, image_size=(128,128), n_images=3, mu_n=7, sigma_n=3, snr_mean=10, snr_std=0): 
         # Background
         dark_color = np.random.randint(self.dark_min, self.dark_max)
         #light_color = np.random.randint(1, 255 - dark_color)
@@ -55,11 +57,11 @@ class ImageGenerator(object):
         radius = np.random.uniform(self.rad_min, self.rad_max)
         cov = np.eye(2) #+ 0.5 * np.random.uniform(-1, 1, size=(2, 2))
         
-        noise = np.random.normal(sigma_n, mu_n, size=image_size) 
+        noise = np.random.normal(mu_n, sigma_n, size=image_size) 
         #p_noise = np.random.random(size=image_size)
-        #snr = np.random.normal(sigma_snr, mu_snr)
+        snr = np.random.normal(snr_mean, snr_std)
         #th_noise = 7
-        snr = 4
+        #snr = 3
         light_color = sigma_n*snr
         
         b = np.random.randint(1,11)

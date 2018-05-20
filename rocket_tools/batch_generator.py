@@ -5,7 +5,7 @@ def preprocess_batch(batch):
     batch -= 0.5
     return batch
 
-def BatchGenerator(image_generator, batch_size, snr_mean = 5, snr_std = 2, th_max=0.5, n_images = 3):
+def BatchGenerator(image_generator, batch_size, th_max=0.5, n_images = 3):
     
     while True:
         image_list = []
