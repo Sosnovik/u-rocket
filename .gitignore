@@ -107,6 +107,7 @@ ENV/
 # tensor board
 tensorboard
 saved_models
+saved_models_keras
 photo
 
 #experiments
