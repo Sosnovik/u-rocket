@@ -1,12 +1,13 @@
 from keras.models import Model
 from keras.layers import *
+from keras_contrib.layers.normalization import InstanceNormalization
 
 
 def double_conv_layer(x, size, dropout, batch_norm):
     axis = 3
     conv = Conv2D(size, (3, 3), padding='same')(x)
     if batch_norm is True:
-        conv = BatchNormalization(axis=axis)(conv)
+        conv = InstanceNormalization(axis=axis)(conv)
     conv = Activation('relu')(conv)
     conv = Conv2D(size, (3, 3), padding='same')(conv)
     if batch_norm is True:
@@ -16,7 +17,7 @@ def double_conv_layer(x, size, dropout, batch_norm):
         conv = Dropout(dropout)(conv)
     return conv
 
-def U_NET(dropout_val=0.0, filters = 16, axis = 3, input_ = (128,128,3), batch_norm=True):
+def U_NET(dropout_val=0.0, filters = 8, axis = 3, input_ = (128,128,3), batch_norm=True):
     inputs = Input((input_))
 
     conv_224 = double_conv_layer(inputs, filters, dropout_val, batch_norm)
@@ -35,7 +36,10 @@ def U_NET(dropout_val=0.0, filters = 16, axis = 3, input_ = (128,128,3), batch_n
     pool_7 = MaxPooling2D(pool_size=(2, 2))(conv_14)
 
     conv_7 = double_conv_layer(pool_7, 32*filters, dropout_val, batch_norm)
-
+    
+    #conv_8 = Conv2D(1, (1, 1), padding='same')(conv_7)
+    #output_1 = Dense(2)(conv_8)
+    
     up_14 = concatenate([UpSampling2D(size=(2, 2))(conv_7), conv_14], axis=axis)
     up_conv_14 = double_conv_layer(up_14, 16*filters, dropout_val, batch_norm)
 

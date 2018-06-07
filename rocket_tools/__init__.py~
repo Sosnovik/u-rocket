@@ -6,4 +6,3 @@ from . import gauss
 from . import metrics
 from . import batch_generator
 from . import model_tf
-from . import model_keras
